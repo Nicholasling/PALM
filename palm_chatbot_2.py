@@ -35,7 +35,7 @@ def find_best_passage(query, dataframe):
 def make_prompt(query,df):
     relevant_passage=find_best_passage(query,df)
     escaped = relevant_passage.replace("'", "").replace('"', "").replace("\n", " ")
-    prompt = textwrap.dedent("""You are the People's Association's Finance Division's assistant. Your role is to provide comprehensive and accurate information to officers regarding financial matters using text from the reference passages included below. \
+    prompt = textwrap.dedent("""You are Singapore People's Association's Citizen Assistant. Your role is to provide comprehensive and accurate information to officers regarding citizen's query using text from the reference passages included below. \
     Be sure to respond in a complete sentence, being comprehensive, including all relevant background information. \
     If the passage is irrelevant to the answer, say "answer not available in context".
     QUESTION: '{query}'
