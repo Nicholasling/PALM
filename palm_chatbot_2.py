@@ -23,7 +23,7 @@ def find_best_passage(query, dataframe):
     dot_products = np.dot(np.stack(dataframe['embedding']), query_embedding['embedding'])
 
     #idx = np.argmax(dot_products)
-    idx_topn = np.argsort(dot_products)[::-1][:4]  # provide top 4 docs found
+    idx_topn = np.argsort(dot_products)[::-1][:3]  # provide top 3 docs found
     tmp_text = ""
     
     for idx in idx_topn:
