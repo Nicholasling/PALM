@@ -1,6 +1,7 @@
 # PALM
+pip install -U google-generativeai
 pip install python-telegram-bot
+pip install langchain
 
-SG_PA_Bot Telegram API: 6206354170:AAE-taWhVwHZbqHpkLLrmtuqHjHQ4qcvkGo
-DAPG Telegram API: 
-
+install Microsoft Visual C++
+pip install chrommadb 
