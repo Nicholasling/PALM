@@ -16,7 +16,7 @@ Press Ctrl-C on the command line or send a signal to the process to stop the
 bot.
 """
 import pandas as pd
-import fund_palm_chatbot
+import palm_chatbot
 import logging
 from telegram import __version__ as TG_VER
 
@@ -73,17 +73,15 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     print("user asking: ", userText)
     
     # Get the bot response
-    answer = fund_palm_chatbot.answer_query_with_context(userText, df)
+    answer = palm_chatbot.answer_query_with_context(userText, df)
     
     await update.message.reply_text(str(answer))
     
 
 def main() -> None:
     """Start the bot."""
-    # Create the Application and pass it your bot's token.
-    #application = Application.builder().token("5792228488:AAE12UKlXMG94hEj0GLA1-IAByQc0eijzi0").build()
-    
-    application = Application.builder().token("6603992454:AAGo6-LWMnArknTyhS6GpYPUzi7lAzH6_F4").build()
+    # Create the Application and pass it your bot's token.    
+    application = Application.builder().token("?").build()
 
     # on different commands - answer in Telegram
     application.add_handler(CommandHandler("start", start))
