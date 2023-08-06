@@ -15,11 +15,10 @@ Basic Echobot example, repeats messages.
 Press Ctrl-C on the command line or send a signal to the process to stop the
 bot.
 """
-import pandas as pd
-import configure
-import palm_chatbot
+import palm_chatbot_1
 
 import logging
+
 from telegram import __version__ as TG_VER
 
 try:
@@ -40,6 +39,9 @@ from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandl
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
+# set higher logging level for httpx to avoid all GET and POST requests being logged
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
 logger = logging.getLogger(__name__)
 
 
@@ -48,10 +50,8 @@ logger = logging.getLogger(__name__)
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
-    welcome_message = configure.chatbot_welcome_msg.replace('.', r'\.')
-    
     await update.message.reply_html(
-        fr"{welcome_message}!",
+        rf"Hi {user.mention_html()}!",
         reply_markup=ForceReply(selective=True),
     )
 
@@ -62,12 +62,12 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    """Echo the user message."""
+
     userText = update.message.text
     print("user asking: ", userText)
     
     # Get the bot response
-    answer = palm_chatbot.get_response(userText)
+    answer = palm_chatbot_1.get_response(str(userText))
     
     await update.message.reply_text(str(answer))
     
@@ -75,7 +75,7 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 def main() -> None:
     """Start the bot."""
     # Create the Application and pass it your bot's token.
-    application = Application.builder().token("?").build()
+    application = Application.builder().token("6468400665:AAH9COH_Ch0x2H1sorI0CYX75alHZFTgu1c").build()
 
     # on different commands - answer in Telegram
     application.add_handler(CommandHandler("start", start))
@@ -85,7 +85,7 @@ def main() -> None:
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
 
     # Run the bot until the user presses Ctrl-C
-    application.run_polling()
+    application.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
 if __name__ == "__main__":
