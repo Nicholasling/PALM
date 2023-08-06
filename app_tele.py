@@ -21,9 +21,9 @@ import logging
 from telegram import __version__ as TG_VER
 
 # generate embeddings upon server start
-df = pd.read_csv('fund.csv', header=0, encoding='utf-8')
+df = pd.read_csv('test.csv', header=0, encoding='utf-8')
 print("start generating embeddings ...")
-df['embedding'] = df['context'].apply(fund_palm_chatbot.embed_fn)
+df['embedding'] = df['context'].apply(palm_chatbot.embed_fn)
 print("finished generating embeddings")
 print(df.info())
 
