@@ -16,14 +16,14 @@ Press Ctrl-C on the command line or send a signal to the process to stop the
 bot.
 """
 import pandas as pd
-import palm_chatbot
+import palm_chatbot_2
 import logging
 from telegram import __version__ as TG_VER
 
 # generate embeddings upon server start
 df = pd.read_csv('test.csv', header=0, encoding='utf-8')
 print("start generating embeddings ...")
-df['embedding'] = df['context'].apply(palm_chatbot.embed_fn)
+df['embedding'] = df['context'].apply(palm_chatbot_2.embed_fn)
 print("finished generating embeddings")
 print(df.info())
 
@@ -73,7 +73,7 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     print("user asking: ", userText)
     
     # Get the bot response
-    answer = palm_chatbot.answer_query_with_context(userText, df)
+    answer = palm_chatbot_2.answer_query_with_context(userText, df)
     
     await update.message.reply_text(str(answer))
     
