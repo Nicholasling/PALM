@@ -1,6 +1,6 @@
 # Installation
 
-pip install -U google-generativeai
+pip install -U google-generativeai (-U is to update to the latest version available)
 
 pip install python-telegram-bot
 
@@ -27,3 +27,11 @@ For a description of the Bot API, see this page: https://core.telegram.org/bots/
 
 
 https://docs.python-telegram-bot.org/en/stable/examples.echobot.html
+
+# Other Reference
+
+https://ai.google/discover/palm2/
+
+https://developers.generativeai.google/tutorials/chat_quickstart
+
+https://makersuite.google.com/app/apikey
