@@ -16,7 +16,7 @@ Press Ctrl-C on the command line or send a signal to the process to stop the
 bot.
 """
 import palm_chatbot_1
-
+import os
 import logging
 
 from telegram import __version__ as TG_VER
